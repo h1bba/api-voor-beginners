@@ -3,10 +3,42 @@
 // 1 persoon: https://fdnd.directus.app/items/person/67
 // iedereen: https://fdnd.directus.app/items/person/?fields=id,name,github_handle,avatar&filter={%22squads%22:{%22squad_id%22:{%22name%22:%22Minor%20Web%20Dev%22}}}&sort=name
 
+
+// domein
 const baseURL = 'https://fdnd.directus.app/';
-const endpointMe = 'items/person/67';
+// parameter
+const endpointMe = 'items/person/226';
 
 
+// domein en parameter samen koppelen in de variabele myURL
+const myURL = baseURL + endpointMe;
+// console.log(myURL);
+
+// getdata is een functie die onderin al geschreven is, de functie fetcht de link. Deze fetch data stoppen we in een functie genaamd UfukData
+getData(myURL).then(UfukData => {
+	// console.log(UfukData.data.name);
+
+	// variabele genaamd myName bevat de data.name van de json
+	let myName = UfukData.data.name;
+	// console log de variabele zodat je kan controleren
+	console.log("myName");
+
+	// de h1 vinden van de html via queryselector
+	let deH1 = document.querySelector("h1");
+
+	// de content van de H1 replacen met de content van myName
+	deH1.textContent = myName;
+	
+
+
+
+});
+
+
+
+
+
+// console.log(myURL);
 
 
 
@@ -47,12 +79,12 @@ const endpointMe = 'items/person/67';
 async /*9*/ function getData(URL) {
 	return ( //8
 		fetch(URL) //1
-		.then ( //2
-			response /*3*/ => response.json() //4
-		)
-		.then ( //5
-			jsonData /*6*/ => {return jsonData} //7
-		)
+			.then( //2
+				response /*3*/ => response.json() //4
+			)
+			.then( //5
+				jsonData /*6*/ => { return jsonData } //7
+			)
 	);
 }
 
@@ -67,11 +99,11 @@ async /*9*/ function getData(URL) {
 // getMyName();
 
 // function getMyName() {
-// 	getData(urlMe).then( data => {  
+// 	getData(urlMe).then( data => {
 
 // 		const myData = data.data;
 // 		let myName = myData.name;
 
 // 		h1.textContent = myName;
-// 	});	
+// 	});
 // }
